@@ -1,0 +1,56 @@
+# CMake build files
+/CMakeCache.txt
+/CMakeFiles/
+/CMakeScripts/
+/Makefile
+/build/
+*.cmake
+
+# VS and Visual Studio Code
+.vscode/
+.vs/
+*.user
+*.userosscache
+*.suo
+*.sln
+*.swp
+
+# Linux and macOS
+.DS_Store
+Thumbs.db
+
+# Build directories (common)
+build/
+out/
+build_windows_release/
+build_windows_debug/
+build_linux_release/
+build_linux_debug/
+
+# Compiled object files, static libraries, and executables
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+*.out
+*.app
+*.pdb
+
+# Debug/Release directories
+*/Debug/
+*/Release/
+*/RelWithDebInfo/
+*/MinSizeRel/
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# IDE-specific files (e.g., Xcode, JetBrains, etc.)
+.idea/
+*.iml
