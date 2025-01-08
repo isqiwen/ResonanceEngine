@@ -1,5 +1,16 @@
 @echo off
+
+chcp 65001
+
+setlocal enabledelayedexpansion enableextensions
+
+setlocal
+
 :: 检查是否提供环境名称参数
+
+echo Step: Conda check...
+conda --version
+
 if "%1"=="" (
     echo "Usage: setup_conan_env_conda.bat <env_name>"
     exit /b 1
@@ -48,3 +59,5 @@ conan profile update settings.arch=x86_64 default
 :: 完成
 echo "Conda-based Conan environment setup for %ENV_NAME% complete."
 pause
+
+endlocal

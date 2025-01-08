@@ -54,3 +54,40 @@ build_linux_debug/
 # IDE-specific files (e.g., Xcode, JetBrains, etc.)
 .idea/
 *.iml
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+**/__pycache__/
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg
+*.egg-info/
+dist/
+build/
+*.pyz
+*.pyz.sha256
+
+# Install logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environment
+*.venv
+*.virtualenv
+.venv/
+.virtualenv/
+pyvenv.cfg
+
+# pyenv
+.python-version
+
+# pytest
+.cache/
