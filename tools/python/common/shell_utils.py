@@ -1,7 +1,7 @@
 import subprocess
 import sys
-import platform
-import shlex
+
+from .logger_config import Logger
 
 def run_command(command, check=True, shell=False, env=None):
     """
@@ -29,7 +29,6 @@ def run_command(command, check=True, shell=False, env=None):
             text=True,
             capture_output=True
         )
-
         return result.returncode == 0, result.stdout.strip(), result.stderr.strip()
     except subprocess.CalledProcessError as e:
         if not check:
@@ -37,11 +36,11 @@ def run_command(command, check=True, shell=False, env=None):
             return False, e.stdout.strip(), e.stderr.strip()
         else:
             # Print error and terminate if check is enabled
-            print(f"Error: Command '{command}' failed with exit code {e.returncode}.")
-            print(f"Standard Output:\n{e.stdout}")
-            print(f"Error Output:\n{e.stderr}")
+            Logger.Error(f"Error: Command '{command}' failed with exit code {e.returncode}.")
+            Logger.Error(f"Standard Output:\n{e.stdout}")
+            Logger.Error(f"Error Output:\n{e.stderr}")
             sys.exit(e.returncode)
     except FileNotFoundError:
         # Handle case where the command is not found
-        print(f"Error: Command not found: {command}")
+        Logger.Error(f"Error: Command not found: {command}")
         return False, "", f"Command not found: {command}"
