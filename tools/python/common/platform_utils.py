@@ -28,6 +28,20 @@ class Platform:
     @staticmethod
     def is_windows():
         """
-        Check if the platform is Unix-like (Linux or macOS).
+        Check if the platform is Windows.
         """
         return Platform.detect() == Platform.WINDOWS
+
+    @staticmethod
+    def is_linux():
+        """
+        Check if the platform is Linux.
+        """
+        return Platform.detect() == Platform.LINUX
+
+    @staticmethod
+    def is_macos():
+        """
+        Check if the platform is Macos.
+        """
+        return Platform.detect() == Platform.MACOS

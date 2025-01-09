@@ -1,7 +1,7 @@
 from conan import ConanFile
 from conan.tools.cmake import CMake, CMakeToolchain, CMakeDeps, cmake_layout
 from conan.tools.files import copy
-import os
+from pathlib import Path
 
 class AetherEngineConan(ConanFile):
     name = "aether_engine"
@@ -41,7 +41,7 @@ class AetherEngineConan(ConanFile):
             del self.options.fPIC
 
     def layout(self):
-        cmake_layout(self)
+        self.folders.generators = Path(self.folders.build) / "Generators"
 
     def generate(self):
         deps = CMakeDeps(self)

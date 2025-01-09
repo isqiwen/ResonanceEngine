@@ -1,7 +1,6 @@
 {
     "global": {
         "project_name": "AetherEngine",
-        "venv_name": ".venv",
         "default_build_type": "Release",
         "supported_build_types": ["Debug", "Release", "RelWithDebInfo", "MinSizeRel"],
         "cmake": {
@@ -10,9 +9,9 @@
         },
         "conan": {
             "user_home": {
-                "windows": "O:\\.tmp_dir_for_ci\\conan_config\\{project_name}",
-                "linux": "/tmp/.tmp_dir_for_ci/conan_config/{project_name}",
-                "macos": "/Users/tmp/.tmp_dir_for_ci/conan_config/{project_name}"
+                "windows": "\\.tmp_dir_for_conan\\{project_name}\\.conan2",
+                "linux": "/tmp/.tmp_dir_for_conan/{project_name}/.conan2",
+                "macos": "/Users/tmp/.tmp_dir_for_conan/{project_name}/.conan2"
             },
             "remote": "https://center.conan.io",
             "profiles": {
@@ -57,8 +56,8 @@
     },
     "platforms": {
         "windows": {
-            "build_dir": "build/win",
-            "install_dir": "install/win",
+            "build_dir": "build",
+            "install_dir": "install",
             "dist_dir": ".dist",
             "compiler": "msvc",
             "toolchain_file": null,

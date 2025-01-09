@@ -42,6 +42,7 @@ build_linux_debug/
 */Release/
 */RelWithDebInfo/
 */MinSizeRel/
+CMakeUserPresets.json
 
 # Log files
 *.log
