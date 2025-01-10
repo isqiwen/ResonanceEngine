@@ -10,7 +10,7 @@ from common.shell_utils import run_command
 from common.file_utils import clean
 from common.platform_utils import Platform
 
-from ci_helpers.ci_constants import CONAN_USER_HOME
+from ci_helpers.ci_constants import CONAN_USER_HOME, CMAKE_VERSION
 from ci_helpers.venv_setup import check_pipenv, activate_pipenv_env
 
 
@@ -89,7 +89,10 @@ def _update_conan_profile(profile_path, section, key, value):
     if not updated:
         if not section_found:
             new_lines.append(f"\n[{section}]\n")
-        new_lines.append(f"{key}={value}\n")
+        if value is not None:
+            new_lines.append(f"{key}={value}\n")
+        else:
+            new_lines.append(f"{key}\n")
 
     # Write back to the profile
     with open(profile_path, "w") as f:
@@ -113,6 +116,7 @@ def _initialize_conan_profile(profile_name="default"):
     conan_profile_path = CONAN_USER_HOME / "profiles" / profile_name
     _update_conan_profile(conan_profile_path, "settings", "compiler.cppstd", 17)
     _update_conan_profile(conan_profile_path, "options", "*:*.shared", True)
+    _update_conan_profile(conan_profile_path, "tool_requires", "cmake/" + CMAKE_VERSION, None)
 
     if Platform.is_linux():
         _update_conan_profile(conan_profile_path, "settings", "compiler.libcxx", "libstdc++11")

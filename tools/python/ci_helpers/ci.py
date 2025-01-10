@@ -5,14 +5,9 @@ from argparse import ArgumentParser, RawTextHelpFormatter
 python_project_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(python_project_root))
 
-from common.logger_config import Logger
-from common.shell_utils import run_command
-from common.file_utils import clean
-from common.platform_utils import Platform
-
 from ci_helpers.ci_constants import log_configuration, PROJECT_NAME
 from ci_helpers.ci_win import WinBuilder
-from ci_helpers.conan_setup import setup_conan_home
+from ci_helpers.conan_setup import check_pipenv, activate_pipenv_env, setup_conan_home
 
 
 def gen_parser():
@@ -86,8 +81,9 @@ def ci_entry(config):
     builder.setup_and_run(config)
 
 def ci_main(argv):
+    check_pipenv()
+    activate_pipenv_env()
     setup_conan_home()
-
     log_configuration()
 
     parser = gen_parser()

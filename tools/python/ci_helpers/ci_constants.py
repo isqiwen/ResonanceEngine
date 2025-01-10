@@ -26,6 +26,8 @@ from common.logger_config import Logger
 BUILD_CONFIG_PATH = PYTHON_CONFIG_MODULE_ROOT / "build_config.json"
 CONFIG = ConfigLoader(BUILD_CONFIG_PATH)
 
+CMAKE_VERSION = CONFIG.get("global.cmake.minimum_version")
+
 PROJECT_NAME = CONFIG.get("global.project_name")
 PLATFORM = Platform.detect()
 BUILD_DIR = PROJECT_ROOT / CONFIG.get(f"platforms.{PLATFORM}.build_dir")
@@ -55,6 +57,7 @@ def log_configuration():
     Logger.Info(f'Config:    Python Tools Build Module Root             = {PYTHON_BUILD_MODULE_ROOT}')
     Logger.Info(f'Config:    Python Tools Common Module Root            = {PYTHON_COMMON_MODULE_ROOT}')
     Logger.Info(f'Config:    Python Tools Config Module Root            = {PYTHON_CONFIG_MODULE_ROOT}')
+    Logger.Info(f"Config:    CMake Version                              = {CMAKE_VERSION}")
     Logger.Info(f"Config:    Conan                                      = {CONAN_EXE}")
     Logger.Info(f"Config:    Conan User Home                            = {CONAN_USER_HOME}")
     Logger.Info(f"Config:    Build Directory                            = {BUILD_DIR}")

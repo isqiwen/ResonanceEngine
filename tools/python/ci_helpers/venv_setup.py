@@ -61,7 +61,7 @@ def activate_pipenv_env():
     """
     Ensure Pipenv environment is active and install required packages.
     """
-    Logger.Info("Activating Pipenv virtual environment...")
+    Logger.Info("Activating pipenv virtual environment...")
     # Check if a Pipenv virtual environment exists
     success, venv_path, _ = run_command(["pipenv", "--venv"], check=False)
 

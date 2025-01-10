@@ -29,11 +29,11 @@ class AetherEngineConan(ConanFile):
 
     # 主工程依赖
     requires = [
-        "glfw/3.3.8",          # 窗口管理
-        "assimp/5.2.5",        # 模型加载
-        "bullet3/3.25",        # 物理引擎
-        "spdlog/1.11.0",       # 日志系统
-        "freetype/2.12.1",     # 字体渲染
+        "glfw/3.3.8",
+        "assimp/5.2.5",
+        "bullet3/3.25",
+        "spdlog/1.11.0",
+        "freetype/2.12.1",
     ]
 
     def config_options(self):

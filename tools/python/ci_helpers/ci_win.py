@@ -8,7 +8,7 @@ from common.shell_utils import run_shell_command
 
 from .ci_constants import BUILD_DIR, PROJECT_ROOT, DIST_DIR
 from .builder import StepBase, BuilderBase
-from .cmake_toolchain_utils import get_cpp_cmake_gen_target
+from .cmake_helper import get_cpp_cmake_gen_target, get_cmake_exe
 
 
 class StepClean(StepBase):
@@ -47,8 +47,15 @@ class StepBuild(StepBase):
             build_root.mkdir(parents=True)
 
         run_shell_command(f"pipenv run conan install {PROJECT_ROOT} --output-folder={build_root} --build=missing -s build_type={version}")
-        run_shell_command(f"pipenv run cmake -G {get_cpp_cmake_gen_target()} -S {PROJECT_ROOT} -B {build_root} -DCMAKE_BUILD_TYPE={version} -DCMAKE_INSTALL_PREFIX={DIST_DIR} -DCMAKE_TOOLCHAIN_FILE={toolchain_file}")
-        run_shell_command(f"pipenv run cmake --build {build_root} --config {version} -j{os.cpu_count()}")
+
+        cmake = get_cmake_exe(toolchain_file)
+
+        run_shell_command(f"pipenv run {cmake} -G {get_cpp_cmake_gen_target()} -S {PROJECT_ROOT} -B {build_root} -DCMAKE_BUILD_TYPE={version} -DCMAKE_INSTALL_PREFIX={DIST_DIR} -DCMAKE_TOOLCHAIN_FILE={toolchain_file}")
+        run_shell_command(f"pipenv run {cmake} --build {build_root} --config {version} -j{os.cpu_count()}")
+
+        # run_shell_command(f"pipenv run conan install {PROJECT_ROOT} --build=missing -s build_type={version}")
+        # run_shell_command(f"pipenv run conan build {PROJECT_ROOT} --configure")
+        # run_shell_command(f"pipenv run conan build {PROJECT_ROOT} --build")
 
 
 class StepPack(StepBase):
@@ -81,7 +88,6 @@ class StepTest(StepBase):
             version = 'Release'
 
         build_root = BUILD_DIR / version
-
 
 
 class WinBuilder(BuilderBase):

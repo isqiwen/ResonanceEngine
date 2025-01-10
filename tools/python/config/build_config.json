@@ -4,7 +4,7 @@
         "default_build_type": "Release",
         "supported_build_types": ["Debug", "Release", "RelWithDebInfo", "MinSizeRel"],
         "cmake": {
-            "minimum_version": "3.15",
+            "minimum_version": "3.25.0",
             "default_generator": "Ninja"
         },
         "conan": {

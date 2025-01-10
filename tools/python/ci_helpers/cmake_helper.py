@@ -1,10 +1,31 @@
+import os
 import sys
-import subprocess
 import shutil
+from pathlib import Path
 
 from common.platform_utils import Platform
 from common.shell_utils import run_command
 from common.logger_config import Logger
+
+
+def get_cmake_exe(conan_toolchain_file):
+    try:
+        if not os.path.exists(conan_toolchain_file):
+            raise FileNotFoundError(f"Toolchain file not found: {conan_toolchain_file}")
+
+        with open(conan_toolchain_file, "r") as file:
+            for line in file:
+                if "CMAKE_PROGRAM" in line:
+                    cmake_path = Path(line.split('"')[1])
+                    Logger.Info(f"Conan-installed CMake path: {cmake_path}")
+
+                    if Platform.is_windows():
+                        return cmake_path / "cmake.exe"
+                    else:
+                        return cmake_path / "cmake"
+    except Exception as e:
+        Logger.Info(f"Error reading toolchain file: {e}")
+        return None
 
 
 def get_cpp_cmake_gen_target():
@@ -14,8 +35,7 @@ def get_cpp_cmake_gen_target():
     if Platform.is_windows():
         vs_generators = [
             '"Visual Studio 17 2022"',
-            '"Visual Studio 16 2019"',
-            '"Visual Studio 15 2017"'
+            '"Visual Studio 16 2019"'
         ]
         for generator in vs_generators:
             if is_cmake_generator_available(generator):

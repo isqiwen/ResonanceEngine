@@ -143,7 +143,7 @@ class ShellCommandRunner:
                 len(stdout) > 0 and self.myLogger.Info(stdout)
                 len(stderr) > 0 and self.myLogger.Error(stderr)
 
-        return proc.returncode, stdout, stderr
+        return proc.returncode == 0, stdout, stderr
 
 
 def run_shell_command(*args, **kwargs):
