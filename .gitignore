@@ -1,94 +1,99 @@
-# CMake build files
-/CMakeCache.txt
-/CMakeFiles/
-/CMakeScripts/
-/Makefile
-/build/
-*.cmake
+# ================================
+# General Files and Directories
+# ================================
 
-# VS and Visual Studio Code
-.vscode/
-.vs/
-*.user
-*.userosscache
-*.suo
-*.sln
-*.swp
-
-# Linux and macOS
+# Ignore hidden system files (macOS/Linux/Windows)
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Build directories (common)
-build/
-out/
-build_windows_release/
-build_windows_debug/
-build_linux_release/
-build_linux_debug/
+# Editor/IDE specific files
+.vscode/
+.idea/
+*.suo
+*.user
+*.log
 
-# Compiled object files, static libraries, and executables
+# ================================
+# Build Files
+# ================================
+
+# C++ build artifacts
 *.o
-*.a
+*.obj
 *.so
-*.dylib
+*.dll
+*.lib
+*.a
+*.lo
+*.la
+
+# Compiled binary files
 *.exe
 *.out
 *.app
-*.pdb
 
-# Debug/Release directories
-*/Debug/
-*/Release/
-*/RelWithDebInfo/
-*/MinSizeRel/
+# CMake-generated files and directories
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
 CMakeUserPresets.json
 
-# Log files
-*.log
+# Conan-specific build artifacts
+conanbuildinfo.*
+conan.lock
+conaninfo.txt
 
-# Temporary files
-*.tmp
+# Pipenv virtual environment
+**/.venv/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# ================================
+# Project-Specific Directories
+# ================================
+
+# Ignore build directories for C++/CMake projects
+/build
+**/build/
+
+# Ignore environment configuration files
+.env
+*.env
+
+# ================================
+# JSON/Configuration Files
+# ================================
+
+# Ignore intermediate configuration files
 *.bak
 *.swp
+*.tmp
 
-# IDE-specific files (e.g., Xcode, JetBrains, etc.)
-.idea/
-*.iml
+# ================================
+# Documentation and Logs
+# ================================
 
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-**/__pycache__/
+# Ignore documentation and log files
+*.log
+*.tmp
+*.markdown~
+doc/notes.txt
 
-# Distribution / packaging
-.Python
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-*.egg
-*.egg-info/
-dist/
-build/
-*.pyz
-*.pyz.sha256
+# ================================
+# Exceptions
+# ================================
 
-# Install logs
-pip-log.txt
-pip-delete-this-directory.txt
+# Do not ignore specific directories or files
+!cmake/
+!CMakeLists.txt
+!.vscode/settings.json
 
-# Virtual environment
-*.venv
-*.virtualenv
-.venv/
-.virtualenv/
-pyvenv.cfg
+.VSCodeCounter/
 
-# pyenv
-.python-version
-
-# pytest
-.cache/
+# ================================
+# End of File
+# ================================

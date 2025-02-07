@@ -1,7 +1,7 @@
 import shutil
 from pathlib import Path
 
-from .logger_config import Logger
+from automation.utils.logger import Logger
 
 
 def clean(target, dry_run=False):

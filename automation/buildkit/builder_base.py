@@ -1,4 +1,3 @@
-
 class StepBase:
 
     def __init__(self):

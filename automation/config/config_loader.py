@@ -9,8 +9,12 @@ class ConfigLoader:
     def _load_config(self):
         if not self.config_path.exists():
             raise FileNotFoundError(f"Configuration file not found: {self.config_path}")
-        with open(self.config_path, "r") as f:
-            return json.load(f)
+
+        try:
+            with open(self.config_path, "r") as f:
+                return json.load(f)
+        except json.JSONDecodeError as e:
+            raise ValueError(f"Invalid JSON in configuration file: {e}")
 
     def get(self, key_path, default=None):
         """
